@@ -60,6 +60,7 @@
                     <option value="#0000FF">Azul</option>
                     <option value="#008000">Verde</option>
                     <option value="#FFFF00">Amarelo</option>
+                    <option value="#000000">Preto</option>
                 </select>
             </div>
 

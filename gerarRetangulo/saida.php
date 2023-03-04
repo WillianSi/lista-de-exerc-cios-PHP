@@ -25,7 +25,7 @@
 
         echo "<h4>Retangulo gerado com sucesso</h4>";
         // Gerando borda para o retângulo
-        echo "<table>";
+        echo "<table style='margin: 0 auto;'>";
         // Loop para gerar as linhas do retângulo
         for ($i = 1; $i <= $altura; $i++) {
             echo "<tr>";

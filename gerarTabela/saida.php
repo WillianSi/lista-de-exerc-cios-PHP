@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <div>
+    <div style="text-align: center;">
         <?php
         // Recebendo dados de entrada
         $titulo = $_POST['titulo'];
@@ -21,7 +21,7 @@
         echo "<h4>$titulo</h4>";
 
         // Definindo estilo CSS para a tabela
-        $css_tabela = "border: {$borda}px solid black; background-color: {$fundo}; color: {$texto}; width: {$espaco}px;";
+        $css_tabela = "border: {$borda}px solid black; background-color: {$fundo}; color: {$texto}; width: {$espaco}px; margin: 0 auto;";
 
         // Gerando tabela
         echo "<table style='{$css_tabela}'>";
