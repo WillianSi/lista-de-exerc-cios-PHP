@@ -9,16 +9,54 @@
 </head>
 
 <body>
+
+    <?php 
+    function listarRegistros() {
+        // Estabelecendo a conexão com o banco de dados
+        $localhost = "localhost";
+        $user = "root";
+        $password = "";
+        $dbname = "listardados";
+    
+        $conn = mysqli_connect($localhost, $user, $password, $dbname);
+    
+        // Verificando se a conexão foi estabelecida com sucesso
+        if (!$conn) {
+            die("Conexão falhou: " . mysqli_connect_error());
+        }
+    
+        // Executando a query SELECT para buscar os registros do banco de dados
+        $query = "SELECT * FROM user";
+        $result = mysqli_query($conn, $query);
+    
+        // Verificando se a query retornou resultados
+        if (mysqli_num_rows($result) > 0) {
+            // Exibindo os registros retornados pela query
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["email"] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='2'>Nenhum registro encontrado</td></tr>";
+        }
+    
+        // Fechando a conexão com o banco de dados
+        mysqli_close($conn);
+    }
+    ?>
+
     <div class="container">
         <h1 class="my-4">Exemplo de Lista:</h1>
-        <form action="saida.php" method="post">
+        <form action="inserir.php" method="post">
             <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome">
+                <label for="name">Nome:</label>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
             <div class="form-group">
-                <label for="idade">Idade:</label>
-                <input type="number" class="form-control" id="idade" name="idade">
+                <label for="email">email:</label>
+                <input type="text" class="form-control" id="email" name="email">
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
@@ -28,54 +66,11 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Idade</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                // Estabelecendo a conexão com o banco de dados
-                $servername = "localhost";
-                $username = "seunome";
-                $password = "suasenha";
-                $dbname = "nomeDoBancoDeDados";
-
-                $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-                if (!$conn) {
-                    die("Conexão falhou: " . mysqli_connect_error());
-                }
-
-                // Inserindo informações no banco de dados
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $nome = $_POST['nome'];
-                    $idade = $_POST['idade'];
-
-                    $sql = "INSERT INTO tabela (nome, idade) VALUES ('$nome', $idade)";
-
-                    if (mysqli_query($conn, $sql)) {
-                        echo "Informações inseridas com sucesso";
-                    } else {
-                        echo "Erro: " . $sql . "<br>" . mysqli_error($conn);
-                    }
-                }
-
-                // Exibindo informações do banco de dados
-                $sql = "SELECT nome, idade FROM tabela";
-                $resultado = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($resultado) > 0) {
-                    echo "<table><tr><th>Nome</th><th>Idade</th></tr>";
-                    while ($linha = mysqli_fetch_assoc($resultado)) {
-                        echo "<tr><td>" . $linha["nome"] . "</td><td>" . $linha["idade"] . "</td></tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo "Nenhum resultado encontrado";
-                }
-
-                // Fechando a conexão com o banco de dados
-                mysqli_close($conn);
-                ?>
+                <?php listarRegistros(); ?>
             </tbody>
         </table>
     </div>
