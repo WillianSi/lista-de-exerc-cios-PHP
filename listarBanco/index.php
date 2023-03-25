@@ -64,7 +64,7 @@
             $sql = "INSERT INTO user (name, email) VALUES ('$name', '$email')";
 
             if (mysqli_query($conn, $sql)) {
-                echo "Informações inseridas com sucesso";
+                
             } else {
                 echo "Erro: " . $sql . "<br>" . mysqli_error($conn);
             }
@@ -85,8 +85,8 @@
                 <label for="email">Email:</label>
                 <input type="text" class="form-control form-control-sm" id="email" name="email">
             </div>
-            <div class="form-group col-auto">
-                <button type="submit" class="btn btn-primary" name="submit">Enviar</button>
+            <div class="form-group col-auto p-4">
+                <button type="submit" class="btn btn-outline-primary" name="submit">Enviar</button>
                 <?php
                 if (isset($_POST['submit'])) {
                     adicinarRegistros();
