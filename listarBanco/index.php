@@ -63,10 +63,8 @@
 
             $sql = "INSERT INTO user (name, email) VALUES ('$name', '$email')";
 
-            if (mysqli_query($conn, $sql)) {
-                
-            } else {
-                echo "Erro: " . $sql . "<br>" . mysqli_error($conn);
+            if (!mysqli_query($conn, $sql)) {
+                 echo "Erro: " . $sql . "<br>" . mysqli_error($conn);
             }
         }
         // Fechando a conexão com o banco de dados
