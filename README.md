@@ -1,4 +1,4 @@
-#Lista de Exercícios PHP
+# Lista de Exercícios PHP
 
 <p>Este é um repositório com uma lista de exercícios em PHP para iniciantes praticarem os conceitos básicos da linguagem.</p>
 <h2>Como usar</h2>
